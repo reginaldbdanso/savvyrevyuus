@@ -7,6 +7,12 @@ const Navbar = () => {
                 <Link to="/">
                     <h1>Savvy Revyuus</h1>
                 </Link>
+                <div className="navlinks">
+                    <Link to='/'>Home</Link>
+                    <Link to='/blogs'>Blogs</Link>
+                    <Link to='/about'>About</Link>
+                    <Link to='/contact'>Contact</Link>
+                </div>
             </div>
         </header>
     );

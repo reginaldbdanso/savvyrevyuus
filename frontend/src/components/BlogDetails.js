@@ -16,7 +16,7 @@ const BlogDetails = ({blog}) => {
     }
 
     return (
-        <div className="Blog-details">
+        <div className="blog-details">
             <h2>{blog.title}</h2>
             <p><strong>Author: </strong>{blog.author}</p>
             <p><strong></strong>{blog.body}</p>
