@@ -11,7 +11,7 @@ const app = express()
 
 // middleware
 app.use(express.json());
-app.use(cors({origin: "https://savvyrevyuus.onrender.com/"}));
+app.use(cors({origin: process.env.CORS_ORIGIN}));
 app.use((req, res, next) => {
     console.log(req.path, req.method);
     next();
