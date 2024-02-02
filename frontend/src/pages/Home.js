@@ -1,34 +1,34 @@
 import { useEffect } from "react";
-import WorkoutDetails from "../components/WorkoutDetails";
-import WorkoutForm from "../components/WorkoutForm";
-import useWorkoutsContext from "../hooks/useWorkoutContext";
+import BlogDetails from "../components/BlogDetails";
+// import BlogForm from "../components/BlogForm";
+import useBlogsContext from "../hooks/useBlogContext";
 
 const Home = () => {
-    // const [workouts, setWorkouts] = useState(null)
-    const {workouts, dispatch} = useWorkoutsContext()
+    // const [Blogs, setBlogs] = useState(null)
+    const {blogs, dispatch} = useBlogsContext()
 
     useEffect(() => {
-        const fetchWorkouts = async () => {
+        const fetchBlogs = async () => {
             const response = await fetch(process.env.REACT_APP_API_URL);
             const json = await response.json();
 
             if (response.ok) {
-                // setWorkouts(json);
-                dispatch({type: 'SET_WORKOUTS', payload: json})
+                // setBlogs(json);
+                dispatch({type: 'SET_BLOGS', payload: json})
             }
         }
 
-        fetchWorkouts()
+        fetchBlogs()
     }, [dispatch]);
 
     return (
         <div className="home">
-            <div className="workouts">
-                {workouts && workouts.map((workout) => (
-                <WorkoutDetails key={workout._id} workout={workout} />
+            <div className="Blogs">
+                {blogs && blogs.map((blog) => (
+                <BlogDetails key={blog._id} blog={blog} />
                 ))}
             </div>
-            <WorkoutForm />
+            {/* <BlogForm /> */}
         </div>
     );
 }

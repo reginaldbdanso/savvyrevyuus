@@ -58,7 +58,7 @@ header a {
   position: relative;
   box-shadow: 2px 2px 5px rgba(0,0,0,0.05);
 }
-.workout-details h4 {
+.workout-details h2 {
   margin: 0 0 10px 0;
   font-size: 1.2rem;
   color: var(--primary);

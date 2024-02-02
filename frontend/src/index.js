@@ -3,14 +3,14 @@ import ReactDOM from 'react-dom/client';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
-import { MyWorkoutContextProvider } from './context/WorkoutContext';
+import { MyBlogContextProvider } from './context/BlogContext';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-    <MyWorkoutContextProvider>
+    <MyBlogContextProvider>
       <App />
-    </MyWorkoutContextProvider>
+    </MyBlogContextProvider>
   </React.StrictMode>
 );
 
