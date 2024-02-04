@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 import BlogDetails from "../components/BlogDetails";
-// import BlogForm from "../components/BlogForm";
+import BlogForm from "../components/BlogForm";
 import useBlogsContext from "../hooks/useBlogContext";
 
 const Home = () => {
@@ -24,11 +24,12 @@ const Home = () => {
     return (
         <div className="home">
             <div className="Blogs">
+                {!blogs && <div>Loading...</div>}
                 {blogs && blogs.map((blog) => (
                 <BlogDetails key={blog._id} blog={blog} />
                 ))}
             </div>
-            {/* <BlogForm /> */}
+            <BlogForm />
         </div>
     );
 }

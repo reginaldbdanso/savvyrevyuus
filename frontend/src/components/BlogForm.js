@@ -1,22 +1,22 @@
 import { useState } from "react";
-import useWorkoutsContext from "../hooks/useBlogContext";
+import useBlogsContext from "../hooks/useBlogContext";
 
-const WorkoutForm = () => {
-    const { dispatch} = useWorkoutsContext()
+const BlogForm = () => {
+    const { dispatch} = useBlogsContext()
     const [title, setTitle] = useState('')
-    const [load, setLoad] = useState('')
-    const [reps, setReps] = useState('')
+    const [body, setBody] = useState('')
+    const [author, setAuthor] = useState('')
     const [error, setError] = useState(null)
     const [emptyFields, setEmptyFields] = useState([])
 
     const handleSubmit = async (e) => {
         e.preventDefault();
         
-        const workout = {title, load, reps};
+        const blog = {title, body, author};
 
         const response = await fetch(process.env.REACT_APP_API_URL, {
             method: 'POST',
-            body: JSON.stringify(workout),
+            body: JSON.stringify(blog),
             headers: {'Content-Type': 'application/json'}
 
         })
@@ -26,21 +26,21 @@ const WorkoutForm = () => {
             setEmptyFields(json.emptyFields);
         }
         if (response.ok) {
-            dispatch({type: 'CREATE_WORKOUT', payload: json})
+            dispatch({type: 'CREATE_BLOG', payload: json})
             setTitle('');
-            setLoad('');
-            setReps('');
+            setBody('');
+            setAuthor('');
             setError(null);
             setEmptyFields([]);
-            console.log('New workout added', json);
+            console.log('New Blog added', json);
         }
     }
 
     return (
        <form className="create" onSubmit={handleSubmit}>
-        <h3>Add a New Workout</h3>
+        <h3>Add a New Blog</h3>
 
-        <label>Exercise Title:</label>
+        <label>Blog Title:</label>
         <input 
             type="text" 
             onChange={(e) => setTitle(e.target.value)}
@@ -48,21 +48,21 @@ const WorkoutForm = () => {
             className={emptyFields.includes('title') ? 'error' : ''}
         
         />
-        <label>Load (in kg):</label>
+        <label>Body: </label>
+        <textarea
+            type="text" 
+            onChange={(e) => setBody(e.target.value)}
+            value={body}
+            className={emptyFields.includes('body') ? 'error' : ''}        
+        ></textarea>
+        <label>Author: </label>
         <input 
             type="text" 
-            onChange={(e) => setLoad(e.target.value)}
-            value={load}
-            className={emptyFields.includes('load') ? 'error' : ''}        
+            onChange={(e) => setAuthor(e.target.value)}
+            value={author}
+            className={emptyFields.includes('author') ? 'error' : ''}
         />
-        <label>Reps: </label>
-        <input 
-            type="text" 
-            onChange={(e) => setReps(e.target.value)}
-            value={reps}
-            className={emptyFields.includes('reps') ? 'error' : ''}
-        />
-        <button>Add Workout</button>
+        <button>Add Blog</button>
         {error && (
             <div className="error">{error}</div>
         )}
@@ -70,4 +70,4 @@ const WorkoutForm = () => {
     );
 }
  
-export default WorkoutForm;
+export default BlogForm;
